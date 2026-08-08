@@ -19,9 +19,11 @@ import {
 interface HeroProps {
   onOpenAI: () => void;
   onOpenResume: () => void;
+  onSelectDetail?: (category: string, id: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenAI, onOpenResume }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenAI, onOpenResume, onSelectDetail }) => {
+
   const [counts, setCounts] = useState({
     exp: 0,
     issues: 0,
@@ -189,7 +191,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAI, onOpenResume }) => {
               </a>
               <span className="text-slate-700">•</span>
               <a
-                href="https://linkedin.com/in/shubham-pawar"
+                href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors"

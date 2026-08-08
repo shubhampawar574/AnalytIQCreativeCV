@@ -109,7 +109,7 @@ export const WhatsNext: React.FC<WhatsNextProps> = ({ onOpenAI, onOpenResume }) 
             </a>
 
             <a
-              href="https://linkedin.com/in/shubham-pawar"
+              href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 font-bold text-xs sm:text-sm transition-all hover:scale-105"

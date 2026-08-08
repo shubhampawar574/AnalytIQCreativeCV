@@ -28,8 +28,14 @@ interface CricketInsightSkill {
   icon: React.ReactNode;
 }
 
-export const CricketPlaybook: React.FC = () => {
+interface CricketPlaybookProps {
+  onSelectDetail?: (category: string, id: string) => void;
+  onAddXp?: (amount: number, reason: string) => void;
+}
+
+export const CricketPlaybook: React.FC<CricketPlaybookProps> = ({ onSelectDetail, onAddXp }) => {
   const [selectedSkillId, setSelectedSkillId] = useState<string>('strategic-decision');
+
 
   const triggerMatchVictory = () => {
     confetti({

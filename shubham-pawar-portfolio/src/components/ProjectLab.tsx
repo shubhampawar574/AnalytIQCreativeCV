@@ -17,8 +17,14 @@ import {
   RotateCcw,
 } from 'lucide-react';
 
-export const ProjectLab: React.FC = () => {
+interface ProjectLabProps {
+  onSelectDetail?: (category: string, id: string) => void;
+  onAddXp?: (amount: number, reason: string) => void;
+}
+
+export const ProjectLab: React.FC<ProjectLabProps> = ({ onSelectDetail, onAddXp }) => {
   const [selectedProjectId, setSelectedProjectId] = useState<string>(PROJECTS_DATA[0].id);
+
 
   // Interactive Text Summarizer Playground State
   const [sampleText, setSampleText] = useState<string>(
@@ -114,15 +120,30 @@ export const ProjectLab: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {proj.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="px-2.5 py-0.5 rounded-lg bg-slate-950 text-slate-300 text-[11px] font-medium border border-slate-800"
+                <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+                  <div className="flex flex-wrap gap-1.5">
+                    {proj.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="px-2.5 py-0.5 rounded-lg bg-slate-950 text-slate-300 text-[11px] font-medium border border-slate-800"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {onSelectDetail && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectDetail('project', proj.id);
+                      }}
+                      className="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-[11px] flex items-center gap-1 shadow-md shadow-amber-500/20 transition-transform hover:scale-105"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      <span>Full Webpage View</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                 </div>
               </div>
             );

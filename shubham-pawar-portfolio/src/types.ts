@@ -111,3 +111,22 @@ export interface SportySkill {
   cvContext: string;
   icon: string;
 }
+
+export interface DetailPageState {
+  page: 'overview' | 'detail';
+  category?: 'project' | 'timeline' | 'sap-pillar' | 'capability' | 'skill' | 'education' | 'achievement' | 'leadership' | 'challenge';
+  id?: string;
+}
+
+export interface QuestItem {
+  id: string;
+  title: string;
+  description: string;
+  xp?: number;
+  xpReward?: number;
+  completed?: boolean;
+  isCompleted?: boolean;
+  category?: string;
+  badgeUnlock?: string;
+}
+

@@ -29,8 +29,14 @@ interface ConstellationNode {
   connections: string[]; // Node IDs connected in constellation
 }
 
-export const ToolkitConstellation: React.FC = () => {
+interface ToolkitConstellationProps {
+  onSelectDetail?: (category: string, id: string) => void;
+  onAddXp?: (amount: number, reason: string) => void;
+}
+
+export const ToolkitConstellation: React.FC<ToolkitConstellationProps> = ({ onSelectDetail, onAddXp }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [activeSkillId, setActiveSkillId] = useState<string>('prob-solving');
 
@@ -630,6 +636,18 @@ export const ToolkitConstellation: React.FC = () => {
                   );
                 })}
               </div>
+
+              {onSelectDetail && (
+                <div className="pt-3">
+                  <button
+                    onClick={() => onSelectDetail('skill', activeNode.id)}
+                    className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]"
+                  >
+                    <Sparkles className="w-4 h-4 text-slate-950" />
+                    <span>Open Full Sub-Webpage View for {activeNode.name} →</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

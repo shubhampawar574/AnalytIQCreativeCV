@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp, Heart, Linkedin, Mail, Github, Sparkles } from 'lucide-react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -24,7 +25,7 @@ export const Footer: React.FC = () => {
             <a href="mailto:shubhamspawar15@gmail.com" className="hover:text-emerald-400 transition-colors">
               <Mail className="w-4 h-4" />
             </a>
-            <a href="https://linkedin.com/in/shubham-pawar" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">
+            <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">
               <Linkedin className="w-4 h-4" />
             </a>
             <a href="https://github.com/shubhampawar" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">

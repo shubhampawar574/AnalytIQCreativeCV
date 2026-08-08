@@ -3,15 +3,23 @@ import { ACHIEVEMENTS_DATA } from '../data/portfolioData';
 import { Trophy, Award, CheckCircle2, Sparkles, Star } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export const AchievementWall: React.FC = () => {
-  const triggerConfetti = () => {
+interface AchievementWallProps {
+  onSelectDetail?: (category: string, id: string) => void;
+}
+
+export const AchievementWall: React.FC<AchievementWallProps> = ({ onSelectDetail }) => {
+  const triggerConfetti = (id: string) => {
     confetti({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 },
       colors: ['#10b981', '#f59e0b', '#3b82f6', '#14b8a6'],
     });
+    if (onSelectDetail) {
+      onSelectDetail('achievement', id);
+    }
   };
+
 
   return (
     <section id="achievements" className="py-24 bg-slate-950 relative border-t border-slate-900">
@@ -35,7 +43,7 @@ export const AchievementWall: React.FC = () => {
           {ACHIEVEMENTS_DATA.map((ach) => (
             <div
               key={ach.id}
-              onClick={triggerConfetti}
+              onClick={() => triggerConfetti(ach.id)}
               className="p-6 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all hover:-translate-y-1 cursor-pointer space-y-4 shadow-xl group relative overflow-hidden"
             >
               {/* Top Row */}

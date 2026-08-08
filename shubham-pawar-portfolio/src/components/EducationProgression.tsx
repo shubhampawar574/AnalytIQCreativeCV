@@ -2,7 +2,12 @@ import React from 'react';
 import { EDUCATION_DATA } from '../data/portfolioData';
 import { GraduationCap, Award, CheckCircle2, MapPin, Sparkles } from 'lucide-react';
 
-export const EducationProgression: React.FC = () => {
+interface EducationProgressionProps {
+  onSelectDetail?: (category: string, id: string) => void;
+}
+
+export const EducationProgression: React.FC<EducationProgressionProps> = ({ onSelectDetail }) => {
+
   return (
     <section id="education" className="py-24 bg-slate-950 relative border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -28,7 +33,8 @@ export const EducationProgression: React.FC = () => {
             return (
               <div
                 key={edu.id}
-                className={`p-6 rounded-3xl border transition-all space-y-4 relative flex flex-col justify-between ${
+                onClick={() => onSelectDetail && onSelectDetail('education', edu.id)}
+                className={`p-6 rounded-3xl border transition-all space-y-4 relative flex flex-col justify-between cursor-pointer group hover:-translate-y-1 ${
                   isHighlight
                     ? 'bg-gradient-to-b from-slate-900 via-slate-900 to-emerald-950/40 border-emerald-500/60 shadow-2xl shadow-emerald-500/10 ring-1 ring-emerald-500/30'
                     : 'bg-slate-900/80 border-slate-800 hover:border-slate-700'

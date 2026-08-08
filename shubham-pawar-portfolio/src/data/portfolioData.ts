@@ -19,7 +19,7 @@ export const PERSONAL_INFO = {
   bio: 'A Tech + Business Analytics professional with demonstrated problem-solving, stakeholder management, cross-functional leadership, consulting exposure, and a proven track record of resolving complex corporate challenges.',
   location: 'Gurgaon / Hyderabad, India',
   email: 'shubhamspawar15@gmail.com', // Placeholder or real
-  linkedin: 'https://linkedin.com/in/shubham-pawar',
+  linkedin: 'https://www.linkedin.com/in/shubham-pawar-7157551b3/',
   github: 'https://github.com/shubhampawar',
   photoPlaceholder: 'SP',
   statusBadge: 'PGDM ’26 @ MDI Gurgaon | Seeking Strategy & Analytics Roles',

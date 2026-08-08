@@ -11,8 +11,13 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
-export const CapabilityMap: React.FC = () => {
+interface CapabilityMapProps {
+  onSelectDetail?: (category: string, id: string) => void;
+}
+
+export const CapabilityMap: React.FC<CapabilityMapProps> = ({ onSelectDetail }) => {
   const [selectedNode, setSelectedNode] = useState<CapabilityNode>(CAPABILITY_NODES[0]);
+
 
   return (
     <section id="capability" className="py-24 bg-slate-950 relative border-t border-slate-900">

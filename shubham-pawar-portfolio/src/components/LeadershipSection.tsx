@@ -2,7 +2,12 @@ import React from 'react';
 import { LEADERSHIP_DATA } from '../data/portfolioData';
 import { Users, CheckCircle2, Megaphone, Trophy, Sparkles } from 'lucide-react';
 
-export const LeadershipSection: React.FC = () => {
+interface LeadershipSectionProps {
+  onSelectDetail?: (category: string, id: string) => void;
+}
+
+export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onSelectDetail }) => {
+
   return (
     <section id="leadership" className="py-24 bg-slate-950 relative border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -58,15 +63,26 @@ export const LeadershipSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-800">
-                {item.impactMetrics.map((im, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 rounded-xl bg-slate-950 text-emerald-300 text-xs font-bold border border-emerald-500/20"
+              <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+                <div className="flex flex-wrap gap-2">
+                  {item.impactMetrics.map((im, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 rounded-xl bg-slate-950 text-emerald-300 text-xs font-bold border border-emerald-500/20"
+                    >
+                      {im}
+                    </span>
+                  ))}
+                </div>
+
+                {onSelectDetail && (
+                  <button
+                    onClick={() => onSelectDetail('leadership', item.id)}
+                    className="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition-transform hover:scale-105 shadow-md shadow-emerald-500/20"
                   >
-                    {im}
-                  </span>
-                ))}
+                    Open Sub-Webpage →
+                  </button>
+                )}
               </div>
             </div>
           ))}

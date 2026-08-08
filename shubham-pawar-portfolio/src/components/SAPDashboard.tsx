@@ -24,8 +24,14 @@ import {
   Terminal,
 } from 'lucide-react';
 
-export const SAPDashboard: React.FC = () => {
+interface SAPDashboardProps {
+  onSelectDetail?: (category: string, id: string) => void;
+  onAddXp?: (amount: number, reason: string) => void;
+}
+
+export const SAPDashboard: React.FC<SAPDashboardProps> = ({ onSelectDetail, onAddXp }) => {
   const [activePillarId, setActivePillarId] = useState<string>(SAP_PILLARS[0].id);
+
   const [simStep, setSimStep] = useState<number>(0);
   const [simActive, setSimActive] = useState<boolean>(false);
 
@@ -209,6 +215,18 @@ export const SAPDashboard: React.FC = () => {
             <p className="text-sm text-slate-300 leading-relaxed font-medium">
               {activePillar.summary}
             </p>
+
+            {onSelectDetail && (
+              <div className="pt-2">
+                <button
+                  onClick={() => onSelectDetail('sap-pillar', activePillar.id)}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all hover:scale-105"
+                >
+                  <Sparkles className="w-4 h-4 text-slate-950" />
+                  <span>Open Dedicated Sub-Webpage for {activePillar.title} →</span>
+                </button>
+              </div>
+            )}
 
             {/* Achievement Bullet Points */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

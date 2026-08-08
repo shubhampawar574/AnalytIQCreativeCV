@@ -15,8 +15,13 @@ import {
   SlidersHorizontal,
 } from 'lucide-react';
 
-export const CareerTimeline: React.FC = () => {
+interface CareerTimelineProps {
+  onSelectDetail?: (category: string, id: string) => void;
+}
+
+export const CareerTimeline: React.FC<CareerTimelineProps> = ({ onSelectDetail }) => {
   const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
+
   const [filter, setFilter] = useState<string>('all');
   const [viewMode, setViewMode] = useState<'vertical' | 'horizontal'>('vertical');
 
@@ -136,7 +141,13 @@ export const CareerTimeline: React.FC = () => {
                 return (
                   <div
                     key={item.id}
-                    onClick={() => setSelectedItem(item)}
+                    onClick={() => {
+                      if (onSelectDetail) {
+                        onSelectDetail('timeline', item.id);
+                      } else {
+                        setSelectedItem(item);
+                      }
+                    }}
                     className={`relative flex flex-col sm:flex-row items-start cursor-pointer group ${
                       isEven ? 'sm:flex-row-reverse' : ''
                     }`}
@@ -212,7 +223,13 @@ export const CareerTimeline: React.FC = () => {
                 return (
                   <div
                     key={item.id}
-                    onClick={() => setSelectedItem(item)}
+                    onClick={() => {
+                      if (onSelectDetail) {
+                        onSelectDetail('timeline', item.id);
+                      } else {
+                        setSelectedItem(item);
+                      }
+                    }}
                     className="w-80 p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/50 cursor-pointer space-y-3 transition-all hover:-translate-y-1 shadow-lg"
                   >
                     <div className="flex items-center justify-between">
